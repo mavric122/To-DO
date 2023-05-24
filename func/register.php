@@ -47,7 +47,7 @@ if (testPassword($password, $password2)) { // Проверка на одинак
         $sql->execute(array("login" => $login, "password" => $password, "email" => $email));
         $_SESSION["login"] = $login;
         file_put_contents('log.txt', "Пользователь $login добавлен в базу", FILE_APPEND);// Логи
-        header('Location:../admin.php');
+        header('Location:../index.html');
     } else {
         file_put_contents('log.txt', "Пользователь $login уже зарегистрирован", FILE_APPEND);// Логи
         echo "Пользователь уже зарегистрирован";
