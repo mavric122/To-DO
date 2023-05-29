@@ -3,44 +3,46 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Название вашего сайта</title>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+	<meta charset="UTF-8">
+	<title>Название вашего сайта</title>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" href="css/reset.css">
 </head>
+
 <body>
-<header>
-    <div class="logo">
-        <span class="logo-text">To-Do</span>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="login.html">Вход</a></li>
-            <li><a href="register.html">Регистрация</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <div class="login-form">
-        <h2>Вход</h2>
-        <form action="func/login.php" method="post">
-            <div class="form-row">
-                <label for="login">Логин:</label>
-                <input type="text" id="login" name="login" required>
-            </div>
-            <div class="form-row">
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Вход</button>
-        </form>
-    </div>
-    <div class="forgot-password">
-        <a href="forgot_password.html">Вспомнить пароль</a>
-    </div>
-</main>
-<footer>
-    <!-- Здесь будет подвал страницы -->
-</footer>
+	<header>
+		<div class="logo">
+			<span class="logo-text">To-Do</span>
+		</div>
+		<nav>
+			<ul>
+				<li><a href="login.html">Вход</a></li>
+				<li><a href="register.html">Регистрация</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<div class="login-form">
+			<h2>Вход</h2>
+			<form class="form__to" action="func/login.php" method="post">
+				<div class="form-row">
+					<label for="login">Логин:</label>
+					<input type="text" id="login" name="login" required>
+				</div>
+				<div class="form-row">
+					<label for="password">Пароль:</label>
+					<input type="password" id="password" name="password" required>
+				</div>
+				<button type="submit">Вход</button>
+				<button type="submit">Вспомнить пароль</button>
+			</form>
+		</div>
+	</main>
+	<footer>
+		<!-- Здесь будет подвал страницы -->
+	</footer>
 </body>
+
 </html>
