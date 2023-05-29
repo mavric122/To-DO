@@ -16,6 +16,10 @@ header {
     margin-left: 20%; /* Сдвигаем шапку влево на 20% */
     width: 60%; /* Устанавливаем ширину 60% от исходной ширины */
 }
+.exit{
+	
+	justify-content: center;
+}
 
 nav ul {
     display: flex;
@@ -52,11 +56,7 @@ footer {
     padding: 20px;
 }
 
-.logo img {
-    width: 100px;
-    height: 40px;
-    margin-right: 10px;
-}
+
 
 .logo-text {
     font-size: 24px;
@@ -79,6 +79,7 @@ nav ul li a {
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 10px;
+	border-radius: 5px;
 }
 
 .task-list {
@@ -97,11 +98,13 @@ nav ul li a {
 
 .task-actions button {
     margin-left: 5px;
+	border-radius: 3px;
+	padding: 10px 10px;
 }
 
-.task-title {
+/* .task-title {
     flex-grow: 1;
-}
+} */
 
 .task-done-btn {
     background-color: #4CAF50;
