@@ -19,6 +19,7 @@ $password = $_POST["password"];
 $password2 = $_POST["password2"];
 $email = $_POST["email"];
 
+
 $fields = array("login", "password", "password2", "email");
 $emptyFields = array();
 
