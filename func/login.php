@@ -5,30 +5,40 @@ require_once "../func/connect.php";
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$login = $_POST["login"];
-$password = $_POST["password"];
+if (isset($_POST["login"]) && isset($_POST["password"])) {
+    $login = $_POST["login"];
+    $password = $_POST["password"];
 
-// подготовка запроса SQL, который будет использоваться для поиска пользователя в базе данных по логину, паролю и email.
-$sql = $pdo->prepare("SELECT id FROM user WHERE login=:login AND password=:password");
-// выполнение подготовленного запроса SQL с передачей параметров логина, пароля и email пользователя.
-$sql->execute(array("login" => $login, "password" => $password));
-//  получение результата запроса SQL в виде ассоциативного массива.
-$user = $sql->fetch(PDO::FETCH_ASSOC);
+    // Подготовка запроса SQL для получения хэша пароля из базы данных
+    $sql = $pdo->prepare("SELECT * FROM user WHERE login = :login");
+    $sql->execute(array("login" => $login));
+    $user = $sql->fetch(PDO::FETCH_ASSOC);
 
-
-if ($user && isset($user['password'])) {
-    // Пользователь найден. Проверка соответствия пароля.
-    if (password_verify($password, $user['password'])) {
-        $_SESSION["login"] = $login;
-
-
-        header('Location:../index.html');
-        exit();
+    if ($user && password_verify($password, $user["password"])) {
+        if(!empty($user["user_token"] )) { // Если токен есть.
+            $token = $user["user_token"];
+            $_SESSION["name"] = $user["login"];
+            setcookie("token", $token, time() + 86400, "/");
+            header("Location:../index.html");
+            exit();
+        } else {
+            $token = bin2hex(random_bytes(16)); // Если нет, то создаём.
+            $id_user = $user["id"];
+            $_SESSION["name"] = $user["login"];
+            $newTokenBD = $pdo->prepare("UPDATE user SET user_token = :token WHERE id = :id_user"); // Записываем в БД
+            $newTokenBD->execute([':token' => $token, ':id_user' => $id_user]);
+            setcookie("token", $token, time() + 86400, "/");
+            header("Location:../index.html");
+            exit();
+        }
     } else {
-        echo "Неверный логин или пароль";
+        $_SESSION["msg"] = "Ошибка входа. Проверьте логин и пароль!";
+        header("Location:../login.html");
+        exit();
     }
 } else {
-    echo "Неверный логин или пароль.
+    $_SESSION["msg"] = "Не переданы данные для входа";
+    header("Location:../login.html");
+    exit();
 }
-
 ?>

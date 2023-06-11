@@ -19,44 +19,50 @@ $password = $_POST["password"];
 $password2 = $_POST["password2"];
 $email = $_POST["email"];
 
-function testPassword($password, $password2) // проверка что пароли совпадают
-{
-    if ($password === $password2) {
-        return true;
-    } else {
-        return false;
+
+$fields = array("login", "password", "password2", "email");
+$emptyFields = array();
+
+foreach ($fields as $field) {
+    if (empty($_POST[$field])) {
+        $emptyFields[] = $field;
     }
 }
 
-// подготовка запроса SQL, который будет использоваться для поиска пользователя в базе данных по логину, паролю и email.
-$sql = $pdo->prepare("SELECT id FROM user WHERE login=:login OR password=:password OR email=:email");
-// выполнение подготовленного запроса SQL с передачей параметров логина, пароля и email пользователя.
-$sql->execute(array("login" => $login, "password" => $password, "email" => $email));
-//  получение результата запроса SQL в виде ассоциативного массива.
-$array = $sql->fetch(PDO::FETCH_ASSOC);
-
-if (!empty($array)) {
-    file_put_contents('log.txt', print_r($array, true), FILE_APPEND); // Логи
+if (!empty($emptyFields)) {
+    $_SESSION["msg"] = "Следующие поля не заполнены: " . implode(", ", $emptyFields);
 }
 
 
-
-if (testPassword($password, $password2)) { // Проверка на одинаковые пароли
-    if ($array["id"] == 0) {
-        $sql = $pdo->prepare("INSERT INTO user (admin, login, password, email) VALUES (0,:login, :password, :email)");
-        $sql->execute(array("login" => $login, "password" => $password, "email" => $email));
-        $_SESSION["login"] = $login;
-        file_put_contents('log.txt', "Пользователь $login добавлен в базу", FILE_APPEND);// Логи
-        header('Location:../index.html');
-    } else {
-        file_put_contents('log.txt', "Пользователь $login уже зарегистрирован", FILE_APPEND);// Логи
-        echo "Пользователь уже зарегистрирован";
-        header('Location:../register.html');
-    }
-} else {
+// Проверка на одинаковые пароли
+if ($password !== $password2) {
     file_put_contents('log.txt', "Пароли $password и $password2 не совпадают", FILE_APPEND); // Логи
-    echo "Пароли не совпадают";
+    $_SESSION["msg"] = "Пароли не совпадают";
     header('Location:../register.html');
+    exit();
 }
 
+// Хеширование пароля
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+// Подготовка запроса SQL для проверки существования пользователя
+$sql = $pdo->prepare("SELECT id FROM user WHERE login=:login OR email=:email");
+$sql->execute(array("login" => $login, "email" => $email));
+$user = $sql->fetch(PDO::FETCH_ASSOC);
+
+if (!empty($user)) {
+    file_put_contents('log.txt', print_r($user, true), FILE_APPEND); // Логи
+    $_SESSION["msg"] = "Логин уже занят";
+    header('Location:../register.html');
+    exit();
+}
+
+// Регистрация нового пользователя
+$sql = $pdo->prepare("INSERT INTO user (admin, login, password, email) VALUES (0, :login, :password, :email)");
+$sql->execute(array("login" => $login, "password" => $hashedPassword, "email" => $email));
+
+$_SESSION["login"] = $login;
+file_put_contents('log.txt', "Пользователь $login добавлен в базу", FILE_APPEND);// Логи
+header('Location:../index.html');
+exit();
 ?>
