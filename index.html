@@ -10,6 +10,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 </head>
+
 <body>
 	<?php
 		print_r($_SESSION);
@@ -22,12 +23,12 @@ session_start();
 		<div>
 			<?php if(isset($_COOKIE["token"])): ?>
 			<nav>
-				<ul class="exit">
+				<ul>
 					<li><a href="#">
-						<?php
+							<?php
 							echo $_SESSION["name"];
 						?>
-					</a></li>
+						</a></li>
 					<li><a href="#" onclick="logout()">Выход</a></li>
 				</ul>
 			</nav>
