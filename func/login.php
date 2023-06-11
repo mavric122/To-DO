@@ -18,7 +18,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
         if(!empty($user["user_token"] )) { // Если токен есть.
             $token = $user["user_token"];
             $_SESSION["name"] = $user["login"];
-            setcookie("token", $token, time() + 86400, "/");
+            setcookie("token", $token, time() + (86400 * 30), "/");
             header("Location:../index.html");
             exit();
         } else {
