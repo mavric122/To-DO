@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,19 +10,23 @@
     <link rel="stylesheet" type="text/css" href="css/new_task.css">
 </head>
 <body>
+<?php
+	print_r($_COOKIE);
+?>
 <header>
     <div class="logo">
         <span class="logo-text">To-Do</span>
     </div>
 
     <div>
-        <?php if(isset($_COOKIE["token"])): ?>
+        <?php if(isset($_COOKIE["user"])): ?>
         <nav>
             <ul>
                 <li><a href="#">
                     <?php
-							echo $_SESSION["name"];
-						?>
+                        $user = json_decode($_COOKIE["user"], true);
+                        echo $user["login"];
+                    ?>
                 </a></li>
                 <li><a href="#" onclick="logout()">Выход</a></li>
             </ul>
@@ -45,7 +52,7 @@
     </script>
 </header>
 <main>
-    <form>
+    <form action="./func/new_task.php" method="POST">
         <label for="task">Задача:</label>
         <input type="text" id="task" name="task" placeholder="Введите задачу" required>
 

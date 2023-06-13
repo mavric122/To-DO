@@ -82,6 +82,10 @@ nav ul li a {
 	border-radius: 5px;
 }
 
+.new-task-btn a {
+    color: white;
+}
+
 .task-list {
     list-style-type: none;
     padding: 0;
