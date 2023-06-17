@@ -17,7 +17,7 @@ if (isset($_COOKIE["user"])) { // Проверяем наличие токена
     if ($token == $user["user_token"]) {
         $sqlTask = $pdo->prepare("INSERT INTO todos(user_id, task, description) VALUES (:user_id, :task, :description)");
         $sqlTask->execute(array("user_id" => $user["id"], "task" => $task, "description" => $description));
-        header("Location:../index.html");
+        header("Location:../index.php");
         exit();
     } else {
         $_SESSION["msg"] = "Ошибка доступа!";

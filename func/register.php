@@ -61,6 +61,6 @@ if (!empty($user)) {
 $sql = $pdo->prepare("INSERT INTO user (admin, login, password, email) VALUES (0, :login, :password, :email)");
 $sql->execute(array("login" => $login, "password" => $hashedPassword, "email" => $email));
 file_put_contents('log.txt', "Пользователь $login добавлен в базу", FILE_APPEND);// Логи
-header('Location:../index.html');
+header('Location:../index.php');
 exit();
 ?>

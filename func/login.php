@@ -19,21 +19,22 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
         $data = array(
             "token" => $user["user_token"],
             "login" => $user["login"],
-            "id_user" => $user["id"],
+            "user_id" => $user["id"],
         );
 
         if (!empty($data["token"])) { // Если токен есть.
             setcookie("user", json_encode($data), time() + 86400, "/");
-            header("Location:../index.html");
+            header("Location:../index.php");
             exit();
         } else {
             try {
                 $token = bin2hex(random_bytes(16)); // Если нет, то создаём.
                 $id_user = $user["id"];
+                $data["token"] = $token;
                 $newTokenBD = $pdo->prepare("UPDATE user SET user_token = :token WHERE id = :id_user"); // Записываем в БД
                 $newTokenBD->execute([':token' => $token, ':id_user' => $id_user]);
                 setcookie("user", json_encode($data), time() + 86400, "/");
-                header("Location:../index.html");
+                header("Location:../index.php");
                 exit();
             } catch (Exception $e) {
                 echo 'Выброшено исключение: ', $e->getMessage(), "\n";
