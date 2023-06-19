@@ -1,18 +1,11 @@
 <?php
 session_start();
 require_once "../connect.php";
+require_once "../func.php";
 
-$data = json_decode($_COOKIE["user"], true);
+$idTask = $_POST['task_id'];
 
-$login = $data["login"];
-$idTask = $_SESSION["idTask"];
-$tokenUser = $data["token"];
-
-$sql = $pdo->prepare("SELECT user_token FROM user WHERE login = :login");
-$sql->execute(array("login" => $login));
-$tokenUserBD = $sql->fetch(PDO::FETCH_ASSOC);
-
-if ($tokenUser == $tokenUserBD["user_token"]){
+if (isUserLoggedIn($_COOKIE["user"])) {
     $sql = $pdo->prepare("UPDATE todos SET status = 0 WHERE id = :idTask");
     $sql->execute([":idTask" => $idTask]);
     header("Location:/../index.php");
