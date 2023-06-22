@@ -48,6 +48,16 @@ require_once "./func/connect.php";
     </div>
 
     <script>
+        function logout() {
+            // Удаление куки
+            document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            document.cookie = "PHPSESSID=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            // Перенаправление на страницу выхода или другую страницу
+            window.location.href = "index.php";
+        }
+
+        // Обработчик события клика на кнопках
         document.querySelectorAll('.task-done-btn, .task-delete-btn, .task-edit-btn').forEach(function (button) {
             button.addEventListener('click', function () {
                 var taskId = this.dataset.taskId;
@@ -74,6 +84,7 @@ require_once "./func/connect.php";
 
 <main>
     <button class="new-task-btn"><a href="new_task.html">Новое дело</a></button>
+    <button class="new-task-btn"><a href="completed_task.php">Законченные дела</a></button>
     <div>
         <?php
         if (isset($_SESSION["msg"])) {
