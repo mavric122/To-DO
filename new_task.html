@@ -1,0 +1,66 @@
+<?php
+    session_start();
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Название вашего сайта</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/new_task.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <span class="logo-text">To-Do</span>
+    </div>
+
+    <div>
+        <?php if(isset($_COOKIE["user"])): ?>
+        <nav>
+            <ul>
+                <li><a href="#">
+                    <?php
+                        $user = json_decode($_COOKIE["user"], true);
+                        echo $user["login"];
+                    ?>
+                </a></li>
+                <li><a href="#" onclick="logout()">Выход</a></li>
+            </ul>
+        </nav>
+        <?php else: ?>
+        <nav>
+            <ul>
+                <li><a href="login.html">Вход</a></li>
+                <li><a href="register.html">Регистрация</a></li>
+            </ul>
+        </nav>
+        <?php endif; ?>
+    </div>
+
+    <script>
+        function logout() {
+            // Удаление куки
+            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+            // Перенаправление на страницу выхода или другую страницу
+            window.location.href = "index.php";
+        }
+    </script>
+</header>
+<main>
+    <form action="./func/new_task.php" method="POST">
+        <label for="task">Задача:</label>
+        <input type="text" id="task" name="task" placeholder="Введите задачу" required>
+
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description" placeholder="Введите описание" rows="5" required></textarea>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</main>
+<footer>
+    <!-- Здесь будет подвал страницы -->
+</footer>
+</body>
+</html>

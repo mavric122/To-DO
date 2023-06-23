@@ -1,5 +1,4 @@
 /* Общие стили для страницы */
-
 body {
     background-color: #eaeaea; /* Задаем фоновый цвет для всей страницы */
     margin: 0; /* Убираем отступы по умолчанию */
@@ -16,9 +15,9 @@ header {
     margin-left: 20%; /* Сдвигаем шапку влево на 20% */
     width: 60%; /* Устанавливаем ширину 60% от исходной ширины */
 }
-.exit{
-	
-	justify-content: center;
+
+.exit {
+    justify-content: center;
 }
 
 nav ul {
@@ -56,8 +55,6 @@ footer {
     padding: 20px;
 }
 
-
-
 .logo-text {
     font-size: 24px;
     font-weight: bold;
@@ -79,11 +76,7 @@ nav ul li a {
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 10px;
-	border-radius: 5px;
-}
-
-.new-task-btn a {
-    color: white;
+    border-radius: 5px;
 }
 
 .task-list {
@@ -102,13 +95,9 @@ nav ul li a {
 
 .task-actions button {
     margin-left: 5px;
-	border-radius: 3px;
-	padding: 10px 10px;
+    border-radius: 3px;
+    padding: 10px 10px;
 }
-
-/* .task-title {
-    flex-grow: 1;
-} */
 
 .task-done-btn {
     background-color: #4CAF50;
@@ -138,4 +127,75 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
+}
+
+/* Стили для страницы создания новой задачи */
+.create-task-form {
+    margin-top: 20px;
+}
+
+.create-task-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.create-task-form input[type="text"],
+.create-task-form textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.create-task-form textarea {
+    height: 100px;
+}
+
+.create-task-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.create-task-form button:hover {
+    background-color: #45a049;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+textarea {
+    height: 100px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
 }
