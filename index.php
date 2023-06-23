@@ -99,6 +99,7 @@ require_once "./func/connect.php";
                 <span class="task-title"><?= $todo['task'] ?></span>
                 <div class="task-description"><?= $todo['description'] ?></div>
                 <div class="task-actions">
+
                     <form class="task-done" action="./func/Todo_func/update_task.php" method="POST">
                         <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
                         <input type="hidden" name="action" value="done"> <!-- Новое поле action -->
@@ -112,6 +113,7 @@ require_once "./func/connect.php";
                     <form class="task-edit" action="./func/Todo_func/edit_task.php" method="POST">
                         <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
                         <button class="task-edit-btn btn" data-task-id="<?= $todo['id'] ?>">Редактировать</button>
+
                     </form>
                 </div>
             </li>
