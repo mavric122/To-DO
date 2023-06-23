@@ -99,19 +99,19 @@ require_once "./func/connect.php";
                 <span class="task-title"><?= $todo['task'] ?></span>
                 <div class="task-description"><?= $todo['description'] ?></div>
                 <div class="task-actions">
-                    <form class="task-done-btn" action="./func/Todo_func/update_task.php" method="POST">
+                    <form class="task-done" action="./func/Todo_func/update_task.php" method="POST">
                         <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
                         <input type="hidden" name="action" value="done"> <!-- Новое поле action -->
-                        <button type="submit" class="task-done-btn" data-task-id="<?= $todo['id'] ?>">Выполнено</button>
+                        <button type="submit" class="task-done-btn btn" data-task-id="<?= $todo['id'] ?>">Выполнено</button>
                     </form>
-                    <form class="task-delete-btn" action="./func/Todo_func/delete_task.php" method="POST">
+                    <form class="task-delete" action="./func/Todo_func/delete_task.php" method="POST">
                         <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
                         <input type="hidden" name="action" value="delete"> <!-- Новое поле action -->
-                        <button class="task-delete-btn" data-task-id="<?= $todo['id'] ?>">Удалить</button>
+                        <button class="task-delete-btn btn" data-task-id="<?= $todo['id'] ?>">Удалить</button>
                     </form>
-                    <form class="task-edit-btn" action="./func/Todo_func/edit_task.php" method="POST">
+                    <form class="task-edit" action="./func/Todo_func/edit_task.php" method="POST">
                         <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
-                        <button class="task-edit-btn" data-task-id="<?= $todo['id'] ?>">Редактировать</button>
+                        <button class="task-edit-btn btn" data-task-id="<?= $todo['id'] ?>">Редактировать</button>
                     </form>
                 </div>
             </li>
