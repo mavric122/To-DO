@@ -1,3 +1,4 @@
 {
-	"liveServer.settings.useWebExt": false
+	"liveServer.settings.useWebExt": false,
+	"phpserver.browser": "chromium"
 }

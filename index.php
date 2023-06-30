@@ -7,7 +7,7 @@ require_once "./func/connect.php";
 
 <head>
     <meta charset="UTF-8">
-    <title>Название вашего сайта</title>
+    <title>To do</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
@@ -95,28 +95,31 @@ require_once "./func/connect.php";
     </div>
     <?php foreach ($userTodos as $todo): ?>
         <ul class="task-list">
-            <li>
-                <span class="task-title"><?= $todo['task'] ?></span>
-                <div class="task-description"><?= $todo['description'] ?></div>
-                <div class="task-actions">
+			<li class="task-actions">	
+				
+				<div class="comments">
+					<div class="task-title"><?= $todo['task'] ?></div>
+					<div class="task-description"><?= $todo['description'] ?></div>
+				</div>
 
-                    <form class="task-done" action="./func/Todo_func/update_task.php" method="POST">
-                        <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
-                        <input type="hidden" name="action" value="done"> <!-- Новое поле action -->
-                        <button type="submit" class="task-done-btn btn" data-task-id="<?= $todo['id'] ?>">Выполнено</button>
-                    </form>
-                    <form class="task-delete" action="./func/Todo_func/delete_task.php" method="POST">
-                        <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
-                        <input type="hidden" name="action" value="delete"> <!-- Новое поле action -->
-                        <button class="task-delete-btn btn" data-task-id="<?= $todo['id'] ?>">Удалить</button>
-                    </form>
-                    <form class="task-edit" action="./func/Todo_func/edit_task.php" method="POST">
-                        <input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
-                        <button class="task-edit-btn btn" data-task-id="<?= $todo['id'] ?>">Редактировать</button>
-
-                    </form>
-                </div>
+                    <div class="action__buttons">
+						<form class="task-done" action="./func/Todo_func/update_task.php" method="POST">
+							<input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
+							<input type="hidden" name="action" value="done"> <!-- Новое поле action -->
+							<button type="submit" class="task-done-btn btn" data-task-id="<?= $todo['id'] ?>">Выполнено</button>
+						</form>
+						<form class="task-delete" action="./func/Todo_func/delete_task.php" method="POST">
+							<input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
+							<input type="hidden" name="action" value="delete"> <!-- Новое поле action -->
+							<button class="task-delete-btn btn" data-task-id="<?= $todo['id'] ?>">Удалить</button>
+						</form>
+						<form class="task-edit" action="./func/Todo_func/edit_task.php" method="POST">
+							<input type="hidden" name="task_id" value="<?= $todo['id'] ?>">
+							<button class="task-edit-btn btn" data-task-id="<?= $todo['id'] ?>">Редактировать</button>
+						</form>
+					</div>
             </li>
+
         </ul>
     <?php endforeach; ?>
 </main>

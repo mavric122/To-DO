@@ -1,171 +1,159 @@
 /* Общие стили для страницы */
 
 body {
-    background-color: #eaeaea; /* Задаем фоновый цвет для всей страницы */
-    margin: 0; /* Убираем отступы по умолчанию */
-    padding: 0;
+	background-color: #eaeaea;
+	/* Задаем фоновый цвет для всей страницы */
+	margin: 0;
+	/* Убираем отступы по умолчанию */
+	padding: 0;
 }
 
 header {
-    background-color: #333;
-    padding: 10px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 20%; /* Сдвигаем шапку влево на 20% */
-    width: 60%; /* Устанавливаем ширину 60% от исходной ширины */
+	background-color: #333;
+	padding: 10px;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 20%;
+	/* Сдвигаем шапку влево на 20% */
+	width: 60%;
+	/* Устанавливаем ширину 60% от исходной ширины */
 }
-.exit{
-	
+
+.exit {
+
 	justify-content: center;
 }
 
-.task-actions{
+.task-actions {
 	display: flex;
-	justify-content: end;
-	flex-wrap: wrap;
+	justify-content: space-between;
 	width: 100%;
-	/* justify-content: space-between; */
+}
+
+.comments {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: space-around;
+	width: 50%;
+
+}
+
+.action__buttons {
+	display: flex;
 
 }
 
 nav ul {
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
 nav ul li {
-    margin-left: 10px;
-    list-style-type: none; /* Добавляем это правило для удаления точек */
+	margin-left: 10px;
+	list-style-type: none;
+	/* Добавляем это правило для удаления точек */
 }
 
 nav ul li:first-child {
-    margin-left: 0;
+	margin-left: 0;
 }
 
 main {
-    background-color: white; /* Устанавливаем белый фон для содержимого страницы */
-    padding: 10px;
-    margin-left: 20%; /* Сдвигаем содержимое страницы влево на 20% */
-    width: 60%; /* Устанавливаем ширину 60% от исходной ширины */
-}
-
-footer {
-    background-color: #f2f2f2;
-    padding: 10px;
-    text-align: center;
+	background-color: white;
+	/* Устанавливаем белый фон для содержимого страницы */
+	padding: 10px;
+	margin-left: 20%;
+	/* Сдвигаем содержимое страницы влево на 20% */
+	width: 60%;
+	/* Устанавливаем ширину 60% от исходной ширины */
 }
 
 /* Дополнительные стили для элементов страницы */
 
 .logo {
-    display: flex;
-    align-items: center;
-    padding: 20px;
+	display: flex;
+	align-items: center;
+	padding: 20px;
 }
 
 
 
 .logo-text {
-    font-size: 24px;
-    font-weight: bold;
+	font-size: 24px;
+	font-weight: bold;
 }
 
 nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    border: 1px solid white;
-    border-radius: 3px;
+	color: white;
+	text-decoration: none;
+	padding: 5px 10px;
+	border: 1px solid white;
+	border-radius: 3px;
 }
 
 .new-task-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	margin-bottom: 10px;
 	border-radius: 5px;
 }
 
 
-
-
-
 .new-task-btn a {
-    color: white;
+	color: white;
 }
-
-
 
 
 .task-list {
-    list-style-type: none;
-    padding: 0;
+	list-style-type: none;
+	padding: 0;
 }
 
 .task-list li {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #ccc;
+	margin-bottom: 10px;
+	padding: 10px;
+	background-color: #ccc;
 }
 
 
 .task-actions button {
-    /* margin-left: 5px; */
-	/* border-radius: 3px; */
 	padding: 10px;
-	/* margin: 0px 0px 0px 0px; */
-	
-	
+
 }
 
-.btn{
+.btn {
 	border-radius: 3px;
 	margin: 0px 10px 0px 0px;
-	
+
 
 }
-.task-edit-btn{
-	
+
+.task-edit-btn {
+
 	background-color: #e2e2e2;
-    color: rgb(0, 0, 0);
-    /* padding: 5px 10px; */
-    font-size: 12px;
-    cursor: pointer;
+	color: rgb(0, 0, 0);
+	font-size: 12px;
+	cursor: pointer;
 }
 
 .task-done-btn {
 	background-color: #4CAF50;
-    color: white;
-    /* padding: 5px 10px; */
-    font-size: 12px;
-    cursor: pointer;
-	
+	color: white;
+	font-size: 12px;
+	cursor: pointer;
+
 }
 
 .task-delete-btn {
-    background-color: #f44336;
-    color: white;
-    /* padding: 5px 10px; */
-    font-size: 12px;
-    cursor: pointer;
-	/* border-radius: 3px; */
+	background-color: #f44336;
+	color: white;
+	font-size: 12px;
+	cursor: pointer;
 }
-
-/* Дополнительные стили для подвала */
-/* footer {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-} */
